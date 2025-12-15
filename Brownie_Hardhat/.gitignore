@@ -15,7 +15,7 @@ node_modules
 # TypeChain files
 /typechain
 /typechain-types
-
+venv/
 # solidity-coverage files
 /coverage
 /coverage.json
