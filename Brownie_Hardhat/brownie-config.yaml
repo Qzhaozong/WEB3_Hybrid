@@ -1,0 +1,39 @@
+# brownie-config.yaml
+dependencies:
+  - OpenZeppelin/openzeppelin-contracts@4.8.0
+
+compiler:
+  solc:
+    version: "0.8.28"
+    optimizer:
+      enabled: true
+      runs: 200
+
+networks:
+  # 本地网络
+  local:
+    host: http://127.0.0.1:8545
+    chainid: 1337
+  
+  # Ganache
+  ganache:
+    host: http://127.0.0.1:7545
+    chainid: 5777
+  
+  # 测试网
+  goerli:
+    host: https://goerli.infura.io/v3/${WEB3_INFURA_PROJECT_ID}
+    chainid: 5
+  
+  # 主网
+  mainnet:
+    host: https://mainnet.infura.io/v3/${WEB3_INFURA_PROJECT_ID}
+    chainid: 1
+  
+  # 自定义本地网络
+  localhost:
+    host: http://127.0.0.1:8545
+    chainid: 1337
+
+# 默认网络
+default: development
