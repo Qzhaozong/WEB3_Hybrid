@@ -43,7 +43,7 @@ npm install --save-dev hardhat@2
 npx hardhat init
 # 6. 安装常用插件
 npm install --save-dev @nomicfoundation/hardhat-toolbox
-npm install --save-dev @nomicfoundation/hardhat-verify
+npm install --save-dev @nomicfoundation/hardhat-verify          --->需要安装的版本为hardhat@3才能安装
 npm install --save-dev dotenv
 hardhat框架
 # hardhat/
@@ -59,3 +59,7 @@ hardhat框架
 ├── package.json        # npm 配置
 ├── package-lock.json   # 依赖锁定文件
 └── README.md           # 说明文档
+
+
+#  启动网络
+npx hardhat node
