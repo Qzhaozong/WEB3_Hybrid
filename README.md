@@ -63,3 +63,6 @@ hardhat框架
 
 #  启动网络
 npx hardhat node
+
+# 运行所有测试
+npx hardhat test
