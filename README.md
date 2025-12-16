@@ -40,9 +40,9 @@ WEB3_Hybrid/
 ##### 5. 初始化 Hardhat 配置   执行后一路回车即可
 ```npx hardhat init```
 ##### 6. 安装常用插件
-```npm install --save-dev @nomicfoundation/hardhat-toolbox
-npm install --save-dev @nomicfoundation/hardhat-verify          --->需要安装的版本为hardhat@3才能安装
-npm install --save-dev dotenv
+```npm install --save-dev @nomicfoundation/hardhat-toolbox```
+```npm install --save-dev @nomicfoundation/hardhat-verify          --->需要安装的版本为hardhat@3才能安装```
+```npm install --save-dev dotenv```
 ##### hardhat框架
  hardhat/
 ├── contracts/           # Solidity 合约
