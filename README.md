@@ -43,8 +43,8 @@ WEB3_Hybrid/
 ```npm install --save-dev @nomicfoundation/hardhat-toolbox
 npm install --save-dev @nomicfoundation/hardhat-verify          --->需要安装的版本为hardhat@3才能安装
 npm install --save-dev dotenv
-hardhat框架```
-##### hardhat/
+##### hardhat框架
+ hardhat/
 ├── contracts/           # Solidity 合约
 │   └── Lock.sol        # 示例合约
 ├── scripts/            # 部署脚本
