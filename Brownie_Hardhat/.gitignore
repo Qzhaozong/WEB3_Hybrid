@@ -16,11 +16,18 @@ node_modules
 /typechain
 /typechain-types
 venv/
+.venv/  
+.vscode/
 # solidity-coverage files
 /coverage
 /coverage.json
 
 # Hardhat Ignition default folder for deployments against a local node
 ignition/deployments/chain-31337
-
-
+artifacts-dbg/
+contracts-dbg/
+dbg.project.json
+dbg.config.json
+dbg.env.json
+dbg.logs
+dbg.traces.json
