@@ -1,62 +1,16 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-contract TestERC20 {
-    string public name;
-    string public symbol;
-    uint8 public decimals = 18;
-    uint256 public totalSupply;
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-    mapping(address => uint256) public balanceOf;
-    mapping(address => mapping(address => uint256)) public allowance;
-
-    event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(
-        address indexed owner,
-        address indexed spender,
-        uint256 value
-    );
-
-    constructor(string memory name_, string memory symbol_) {
-        name = name_;
-        symbol = symbol_;
-    }
+contract TestERC20 is ERC20 {
+    constructor(string memory name, string memory symbol) ERC20(name, symbol) {}
 
     function mint(address to, uint256 amount) public {
-        totalSupply += amount;
-        balanceOf[to] += amount;
-        emit Transfer(address(0), to, amount);
+        _mint(to, amount);
     }
 
-    function transfer(address to, uint256 amount) public returns (bool) {
-        require(balanceOf[msg.sender] >= amount, "Insufficient balance");
-        balanceOf[msg.sender] -= amount;
-        balanceOf[to] += amount;
-        emit Transfer(msg.sender, to, amount);
-        return true;
-    }
-
-    function approve(address spender, uint256 amount) public returns (bool) {
-        allowance[msg.sender][spender] = amount;
-        emit Approval(msg.sender, spender, amount);
-        return true;
-    }
-
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) public returns (bool) {
-        require(balanceOf[from] >= amount, "Insufficient balance");
-        require(
-            allowance[from][msg.sender] >= amount,
-            "Insufficient allowance"
-        );
-
-        balanceOf[from] -= amount;
-        balanceOf[to] += amount;
-        allowance[from][msg.sender] -= amount;
-
-        emit Transfer(from, to, amount);
-        return true;
+    function burn(address from, uint256 amount) public {
+        _burn(from, amount);
     }
 }

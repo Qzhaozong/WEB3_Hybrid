@@ -52,22 +52,23 @@ abstract contract VM {
             }
 
             if (flags & FLAG_CT_MASK == FLAG_CT_CALL) {
-                (success, outData) = address(uint160(uint256(command))).call(
-                    // target
-                    // inputs
-                    flags & FLAG_DATA == 0
-                        ? state.buildInputs(
-                            bytes4(command), // selector
-                            indices,
-                            indicesLength
-                        )
-                        : state[
-                            uint8(bytes1(indices)) &
-                                CommandBuilder.IDX_VALUE_MASK
-                        ]
-                );
+                (success, outData) = address(uint160(uint256(command) >> 32))
+                    .call(
+                        // target
+                        // inputs
+                        flags & FLAG_DATA == 0
+                            ? state.buildInputs(
+                                bytes4(command), // selector
+                                indices,
+                                indicesLength
+                            )
+                            : state[
+                                uint8(bytes1(indices)) &
+                                    CommandBuilder.IDX_VALUE_MASK
+                            ]
+                    );
             } else if (flags & FLAG_CT_MASK == FLAG_CT_STATICCALL) {
-                (success, outData) = address(uint160(uint256(command))) // target
+                (success, outData) = address(uint160(uint256(command) >> 32)) // target
                     .staticcall(
                         // inputs
                         flags & FLAG_DATA == 0
@@ -87,9 +88,9 @@ abstract contract VM {
                 ];
                 require(v.length == 32, "Value must be 32 bytes");
                 uint256 callEth = uint256(bytes32(v));
-                (success, outData) = address(uint160(uint256(command))).call{ // target
-                    value: callEth
-                }(
+                (success, outData) = address(uint160(uint256(command) >> 32))
+                    .call{value: callEth}(
+                    // target
                     // inputs
                     flags & FLAG_DATA == 0
                         ? state.buildInputs(
@@ -140,7 +141,7 @@ abstract contract VM {
                     command_index: flags & FLAG_EXTENDED_COMMAND == 0
                         ? i
                         : i - 1,
-                    target: address(uint160(uint256(command))),
+                    target: address(uint160(uint256(command) >> 32)),
                     message: message
                 });
             }
